@@ -1,0 +1,33 @@
+{% extends "library/base.html" %} {% block content %}
+<table class="table"  style="margin: auto;">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Enrollment #</th>    
+      <th scope="col">Member Name</th>
+      <th scope="col">Email</th>
+      <th data-toggle="tooltip" data-placement="top" title="User types: [1:Member] [2:IT staff] [3:Librerian]"scope="col" hover-zoom>User Type</th>
+      <th scope="col">Profile</th>
+    </tr>
+  </thead>
+  {% if users %}
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{user.enrollment_no}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td data-toggle="tooltip" data-placement="top" title="User types: [1:Member] [2:IT staff] [3:Librerian]"> {{user.user_type}}</td>
+      <td><a href="{% url 'library:users-detail' user.id %}">User profile</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  {% else %}
+  <tbody><tr><td colspan="6"> No Users.</td></tr></tbody>
+  {% endif %}
+</table>
+<p data-toggle="tooltip" data-placement="top" title="User types: [1:Member] [2:IT staff] [3:Librerian]">User: {{user}}, Type: {{user.user_type}} ↖🖱️(hover name)</p>
+{% endblock %}
+
+

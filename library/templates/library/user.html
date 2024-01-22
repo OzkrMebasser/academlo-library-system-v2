@@ -1,0 +1,34 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<div class="profile">
+{% if user.pic %}
+<div class="about__img img">
+    <img src="{{user.pic.url}}" alt="">
+</div>
+{% else %}
+<div class="about__img img">
+    <img src="/static/avatar/images.png" alt="">
+</div>
+{% endif %}
+
+
+<!-- <select name="select"> -->
+    <!-- <option value="value1">Member</option> -->
+    <!-- <option value="value2" selected>IT staff</option> -->
+    <!-- <option value="value3">Librerian</option> -->
+  <!-- </select> -->
+ 
+<p><h1>{{user.name|title}} </h1></p>
+<p data-toggle="tooltip" data-placement="top" title="User types: [1:Member] [2:IT staff] [3:Librerian]">User type {{member.user_type}} (hover here)</p>
+
+<p>Enrollment No: {{user.enrollment_no}}</p>
+<p>Date Joined: {{user.date_joined}}</p>
+
+
+</div>
+
+{% endblock content %}
+
+
+
+

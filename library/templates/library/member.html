@@ -1,0 +1,35 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<div class="profile">
+{% if member.pic %}
+<div class="about__img img">
+    <img src="{{member.pic.url}}" alt="">
+</div>
+{% else %}
+<div class="about__img img">
+    <img src="/static/avatar/images.png" alt="">
+</div>
+{% endif %}
+
+
+<!-- <select name="select"> -->
+    <!-- <option value="value1">Member</option> -->
+    <!-- <option value="value2" selected>IT staff</option> -->
+    <!-- <option value="value3">Librerian</option> -->
+  <!-- </select> -->
+ 
+<p><h1>{{member.name|title}} </h1></p>
+<p data-toggle="tooltip" data-placement="top" title="User types: [1:Member] [2:IT staff] [3:Librerian]">User type {{member.user_type}} (hover here)</p>
+
+<p>Enrollment No: {{member.enrollment_no}}</p>
+<p>Date Joined: {{member.date_joined}}</p>
+
+<a  href="{% url 'library:member-update' member.id%}">Edit Profile</a>
+</div>
+
+{% endblock content %}
+
+
+
+
+
