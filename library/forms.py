@@ -54,3 +54,4 @@ class AccountUpdateForm(forms.ModelForm):
         except Account.DoesNotExist:
             return username
         raise forms.ValidationError('Username "%s" is already in use.' % username)
+

@@ -1,33 +1,57 @@
-{% extends 'library/base.html' %} {% block content %}
+{% extends 'library/base.html' %} 
+{% block content %}
 
+<style>
+  .imageBooks {
+    height: 18rem;
+    padding: 5px 15px;
+  }
 
-<div class="row" style="margin: auto;">
+  .divTitle{
+    height: 4rem;       
+  }
+  .title {
+    /* height: 4rem; */
+    margin: auto;
+    vertical-align: middle;
+    display: inline-block;
+  }
 
-{% for book in books %}
+  .summary {
+    height: 5rem;
+    padding: 5px;
+  }
+/* 
+  .body-card {
+    padding: 2px;
+    margin-top: 3px;
+  } */
+  
+</style>
 
-<div class="card" style="width: 18rem">
-  <span style="text-align: center;"></span>
-  {% if book.pic %}
-  <img src="{{book.pic.url}}" class="card-img-top" alt="" />
-  {% else %}
-  <img src="/static/avatar/open-book-clipart-03.png" class="card-img-top" alt="">
-  {% endif %}
-  <div class="card-body">
-    <h5 class="card-title">{{book.title}}</h5>
-    <p class="card-text">{{book.summary}}</p>
-    <a href="{% url 'library:book' book.id %}" class="btn btn-primary"
-      >View Details</a
-    >
-  </div>
-</div>
+<div class="row justify-content-center">
 
-
-{% endfor %}
-
+  {% for book in books %}
+    <div class="card m-3" style="width: 18rem;">
+      
+      {% if book.pic %}
+        <img class="imageBooks mt-2" src="{{ book.pic.url }}" class="card-img-top" alt="{{ book.title }}">
+      {% else %}
+        <img class="imageBooks" src="/static/avatar/open-book-clipart-03.png" class="card-img-top" alt="Default Book Image">
+      {% endif %}
+      
+      <div class="body-card">
+        <hr class="my-2">
+        <div class="" ><h6 class="title">{{ book.title|slice:":33"}} {% if book.title|length > 33 %}...{% endif %}</h6></div>
+        <hr class="my-2">
+        <div class="summary">
+          <p >{{ book.summary|slice:":90" }}{% if book.summary|length > 92 %}...{% endif %}</p>
+        </div>
+        <a href="{% url 'library:book' book.id %}" class="btn btn-primary w-100 mt-3 mb-3">View Details</a>
+      </div>
+    </div>
+  {% endfor %}
 
 </div>
 
 {% endblock content %}
-
-
-

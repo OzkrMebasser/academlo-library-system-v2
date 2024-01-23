@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import dj_database_url
 import os
 from decouple import config
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,12 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_tt4vrs-%_aptwgr=*6mggr2#*fu*1*k)bw2b-_75#+%tme1l0'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 
 
 # Application definition
@@ -82,11 +85,11 @@ WSGI_APPLICATION = 'library_config.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 # SUPERUSER TESTER
-# Email: testing@gmail.com
-# Name: Usertest
-# Username: Usertest
-# User type: admin
-# pass: Usertestadmin
+# Email: testeruser@academlolibrary.edu
+# Name: Admin      
+# Username: Admin
+# User type: 2
+# Password: Adminuser1
 
 
 # DATABASES = {
@@ -99,8 +102,10 @@ WSGI_APPLICATION = 'library_config.wsgi.application'
 #         'PORT': config('DB_PORT', default='5432'),
 #     }
 # }
+
+database_url = os.environ.get('DATABASE_URL')
 DATABASES = {
-     'default': dj_database_url.parse("postgres://academlo_library_system_user:K3MzqsetKTgS59HiSOPrktww2WuiNxVD@dpg-cmln6b7109ks7393jhe0-a.oregon-postgres.render.com/academlo_library_system")
+     'default': dj_database_url.parse(database_url)
 }
 
 
