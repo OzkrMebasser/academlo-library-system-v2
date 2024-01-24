@@ -11,7 +11,7 @@
   #registration-form .image {
     float: left;
     background-image: url("https://images.pexels.com/photos/1046125/pexels-photo-1046125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-    height: 500px;
+    height: 100vh;
     width: 50%;
     background-size: cover;
     background-position: 25%;
@@ -25,7 +25,7 @@
     float: right;
     /* direction: ltr;
   text-align: center; */
-    height: 500px;
+    height: 100vh;
     width: 50%;
     min-width: 250px;
     padding: 35px;
@@ -79,25 +79,41 @@
       margin-top: 20px;
     }
   }
+   .testing-a{
+    background-color: yellowgreen !important;
+    margin: 1rem 0;
+    padding: 2px;
+   }
+   .testing-b{
+    background-color: rgb(235, 183, 13) !important;
+    /* margin-top: .4rem ; */
+    padding: 2px;
+   }
 </style>
 <div class="" id="registration-form">
     <div class="image"></div>
     <div class="frm">
       <h3>Login</h3>
-      <p >
-        Complete the form for quick registration. <br />
-        Your login details will be sent to your email within 24 hours.
+      <p class="testing-a">
+        <strong class="">User "ADMIN" for test app</strong><br>
+        <span><strong>Username: </strong>testeruser@academlolibrary.edu</span><br>
+        <span><strong>Password: </strong>Adminuser1</span><br>
+      </p>
+      <p class="testing-b">
+        <strong class="center-text">User "MEMBER" for test app</strong><br>
+        <span><strong>Username: </strong>userone@userone.com</span><br>
+        <span><strong>Password: </strong>academlo123</span><br>
       </p>
       <form method="POST">
         {% csrf_token %} 
         {% load widget_tweaks %}
 
         <div class="form-group mb-4">
-          {% render_field form.username type="text" class="form-control"id="exampleInputUsername" placeholder="Username" %}
+          {% render_field form.username type="text" class="form-control"id="InputUsername" placeholder="User Email" %}
         </div>
 
         <div class="form-group mb-4">
-          {% render_field form.password type="password" class="form-control" id="exampleInputPassword" placeholder="Password" %}
+          {% render_field form.password type="password" class="form-control" id="InputPassword" placeholder="Password" %}
         </div>
         <div class="pb-2">
           <button

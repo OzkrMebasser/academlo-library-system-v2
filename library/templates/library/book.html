@@ -13,8 +13,8 @@
 {% if request.user.is_admin or request.user.is_superuser %}
 <a  href="{% url 'library:book-update' book.id%}">Edit</a>
 {% endif %}
-<span style="width: 50%; margin: auto;"><h1 class="text-center">{{book.title|title}}</h1></span>
-<p style="width: 50%; margin: auto;">{{book.summary}}</p>
+<span style="width: 100%; margin: auto;"><h1 class="text-center">{{book.title|title}}</h1></span>
+<p style="width: 100%; margin: auto; text-align: justify;">{{book.summary}}</p>
 <p><h4 style="margin: auto;">Genre:</h4> {{book.genre.all|join:', '}}</p>
 <p><h4 style="margin: auto;">Book Language:</h4> {{book.language}}</p>
 <p><h4 style="margin: auto;">Pages:</h4> {{book.pages}}</p>
