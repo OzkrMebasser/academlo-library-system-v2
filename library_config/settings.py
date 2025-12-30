@@ -108,12 +108,17 @@ WSGI_APPLICATION = 'library_config.wsgi.application'
 #         'ENGINE': 'django.db.backends.sqlite3' , 
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')}  
 # }
-database_url = os.environ.get('DATABASE_URL')
+# database_url = os.environ.get('DATABASE_URL')
+
+# DATABASES = {
+#      'default': dj_database_url.parse(database_url)
+# }
 
 DATABASES = {
-     'default': dj_database_url.parse(database_url)
+    'default': dj_database_url.config(
+        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
