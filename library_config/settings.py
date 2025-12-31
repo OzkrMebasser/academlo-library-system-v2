@@ -129,6 +129,22 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+if os.environ.get("RENDER"):
+    try:
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+
+        if not User.objects.filter(username=os.environ.get("DJANGO_SUPERUSER_USERNAME")).exists():
+            User.objects.create_superuser(
+                username=os.environ.get("DJANGO_SUPERUSER_USERNAME"),
+                email=os.environ.get("DJANGO_SUPERUSER_EMAIL"),
+                password=os.environ.get("DJANGO_SUPERUSER_PASSWORD"),
+            )
+    except Exception as e:
+        print("Superuser creation skipped:", e)
+
+
 # --------------------------------------------------
 # DJANGO 2.2 NOTE
 # --------------------------------------------------
